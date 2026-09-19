@@ -1,0 +1,168 @@
+{
+  "_version": "1.86.0",
+  "sap.app": {
+    "id": "voos",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.32.0",
+      "toolsId": "fc7b56f9-bdc6-40e7-aac7-dda0f16532ce"
+    },
+    "dataSources": {
+      "ZUI2_ZFLIGHT_CFV_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI2_ZFLIGHT_CFV_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZUI2_ZFLIGHT_CFV_VAN.xml"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZUI2_ZFLIGHT_CFV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZUI2_ZFLIGHT_CFV_VAN",
+            "annotation"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.148.9",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.f": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.suite.ui.generic.template": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "voos.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "TwoWay",
+          "defaultCountMode": "Inline",
+          "refreshAfterChange": false,
+          "metadataUrlParams": {
+            "sap-value-list": "none"
+          }
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [],
+      "targets": {}
+    }
+  },
+  "sap.ui.generic.app": {
+    "_version": "1.3.0",
+    "settings": {
+      "forceGlobalRefresh": false,
+      "objectPageHeaderType": "Dynamic",
+      "considerAnalyticalParameters": true,
+      "showDraftToggle": false
+    },
+    "pages": {
+      "ListReport|ZC_CONNECTION_CFV": {
+        "entitySet": "ZC_CONNECTION_CFV",
+        "component": {
+          "name": "sap.suite.ui.generic.template.ListReport",
+          "list": true,
+          "settings": {
+            "condensedTableLayout": true,
+            "smartVariantManagement": true,
+            "enableTableFilterInPageVariant": true,
+            "filterSettings": {
+              "dateSettings": {
+                "useDateRange": true
+              }
+            },
+            "tableSettings": {
+              "type": "ResponsiveTable"
+            }
+          }
+        },
+        "pages": {
+          "ObjectPage|ZC_CONNECTION_CFV": {
+            "entitySet": "ZC_CONNECTION_CFV",
+            "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+            "component": {
+              "name": "sap.suite.ui.generic.template.ObjectPage"
+            },
+            "pages": {
+              "ObjectPage|to_Flight": {
+                "navigationProperty": "to_Flight",
+                "entitySet": "ZC_FLIGHT_CFV",
+                "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                "component": {
+                  "name": "sap.suite.ui.generic.template.ObjectPage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
