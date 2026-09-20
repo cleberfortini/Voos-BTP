@@ -135,7 +135,7 @@
               }
             },
             "tableSettings": {
-              "type": "ResponsiveTable",
+              "type": "GridTable",
               "multiSelect": true
             }
           }
